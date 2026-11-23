@@ -307,9 +307,11 @@
         if (!archive.length) detail.append(element("p", "intro", "등록된 시즌 자료가 없습니다."));
         for (const [, , title, url] of archive) {
           const row = element("div", "career");
-          row.append(link(typeof url === "number" ? m + url : url,
+          const archiveLink = link(typeof url === "number" ? m + url : url,
             title + (typeof url === "number" ? " · Met 소장품" :
-              url.startsWith("https://collections.lacma.org/") ? " · LACMA 소장품" : " · 공식 자료")));
+              url.startsWith("https://collections.lacma.org/") ? " · LACMA 소장품" : " · 공식 자료"));
+          archiveLink.style.setProperty("color", "#fff", "important");
+          row.append(archiveLink);
           detail.append(row);
         }
       }
