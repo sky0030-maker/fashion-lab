@@ -16,8 +16,19 @@
     { person: "martine", brand: "balenciaga", years: "2026–", role: "크리에이티브 디렉터" }
   ];
 
-  function initialize(host) {
-    if (host.dataset.orbitInteractive === "true") return;
+  
+function initialize(host) {
+  const existingLayer = host.querySelector("#nodes");
+
+  if (
+    host.dataset.orbitInteractive === "true" &&
+    existingLayer?.querySelector(".node")
+  ) {
+    return;
+  }
+
+  host.removeAttribute("data-orbit-interactive");
+
 
     const find = selector => host.querySelector(selector);
     const layer = find("#nodes");
