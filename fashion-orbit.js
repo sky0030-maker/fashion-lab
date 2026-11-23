@@ -7,8 +7,15 @@
   const p = "https://www.pradagroup.com/en/";
   const kHouse = k + "houses/fashion-and-leather-goods/";
   const lHouse = l + "our-maisons/fashion-leather-good/";
-  const valentino = "https://www.valentino.com/en-gr/v-universe/maison/history";
+  const valentino = "https://www.valentino.com/en-ie/v-universe/maison/history";
   const japan = "https://www.metmuseum.org/pt/essays/miyake-kawakubo-and-yamamoto-japanese-fashion-in-the-twentieth-century";
+  const diorHistory = "https://www.galeriedior.com/en/history";
+  const margielaHistory = "https://www.momu.be/en/collection-stories/martin-margiela";
+  const loeweHistory = "https://www.loewe.com/eur/en/pd/stories/welcome-to-loewe.html";
+  const chiuriFendi = l + "news-lvmh/maria-grazia-chiuri-named-chief-creative-officer-at-fendi";
+  const pharrellVuitton = l + "news-lvmh/pharrell-williams-lights-up-paris-for-louis-vuitton";
+  const versaceSuccession = "https://www.capriholdings.com/news/news-details/2025/Donatella-Versace-Assumes-Role-of-Chief-Brand-Ambassador-of-Versace/default.aspx";
+  const otb = "https://www.otb.net/en/news/";
   const founder = "창립";
   const cofounder = "공동 창립";
   const director = "크리에이티브 디렉터";
@@ -67,8 +74,8 @@
     ["mcqueen", "Alexander McQueen", 1992, null, founder, m + "930535"],
     ["dior", "Christian Dior", 1946, null, founder],
     ["dior", "Yves Saint Laurent", 1957, 1960, artistic, "https://museeyslparis.com/en/stories/les-annees-dior-1-1"],
-    ["dior", "John Galliano", 1997, null, "1997–98 F/W 디자인", m + "131792"],
-    ["dior", "Jonathan Anderson", 2025, null, "2026 S/S 남성복 데뷔", l + "news-lvmh/jonathan-anderson-presents-debut-collection-for-dior-at-mens-summer-2026-show"],
+    ["dior", "John Galliano", 1996, 2011, director, diorHistory],
+    ["dior", "Jonathan Anderson", 2025, null, "여성복·남성복·오트 쿠튀르 크리에이티브 디렉터 임명", diorHistory],
     ["givenchy", "Hubert de Givenchy", 1952, null, founder],
     ["givenchy", "Alexander McQueen", 1997, null, "1997 S/S 쿠튀르 디자인", m + "931292"],
     ["vuitton", "Louis Vuitton", 1854, null, founder],
@@ -76,7 +83,7 @@
     ["fendi", "Edoardo Fendi", 1925, null, cofounder],
     ["fendi", "Karl Lagerfeld", 1965, 2019, "디자인 협업", l + "news-lvmh/fendi-celebrates-opening-of-karl-lagerfeld-a-line-of-beauty-exhibition-at-the-metropolitan-museum-of-art-in-new-york"],
     ["celine", "Céline Vipiana", 1945, null, founder, l + "our-group/history/"],
-    ["celine", "Michael Rider", 2026, null, "2026 F/W 디자인", l + "news-lvmh/style-and-flair-at-the-celine-winter-2026-show"],
+    ["celine", "Michael Rider", 2025, null, "2026 S/S 데뷔", l + "news-lvmh/michael-rider-debuts-at-celine-with-stellar-spring-2026-collection"],
     ["loewe", "Enrique Loewe Roessberg", 1872, null, "가죽 공방 인수 · 하우스 명칭의 유래", "https://www.loewe.com/eur/en/pd/stories/welcome-to-loewe.html"],
     ["loewe", "Jonathan Anderson", 2025, null, "2025 F/W 디자인", l + "news-lvmh/fashion-art-and-craft-for-loewe-fall-winter-2025/"],
     ["kenzo", "Kenzo Takada", 1970, null, founder],
@@ -113,7 +120,54 @@
     ["saint-laurent", "Hedi Slimane", 2012, 2016, director, k + "news/yves-saint-laurent-appoints-anthony-vaccarello-as-creative-director/"],
     ["celine", "Hedi Slimane", 2018, null, "아티스틱·크리에이티브·이미지 디렉터 임명", l + "publications/hedi-slimane-named-artistic-creative-and-image-director-of-celine"],
     ["givenchy", "Sarah Burton", 2024, null, director + " 임명", l + "news-lvmh/sarah-burton-appointed-creative-director-of-givenchy/"],
-    ["vuitton", "Nicolas Ghesquière", 2025, null, "2025 S/S 여성복 디자인", "https://au.louisvuitton.com/eng-au/magazine/articles/women-spring-summer-2025-show"]
+    ["vuitton", "Nicolas Ghesquière", 2013, null, "여성복 아티스틱 디렉터 임명", "https://us.louisvuitton.com/eng-us/magazine/articles/nicolas-ghesquiere"],
+    ["balenciaga", "Nicolas Ghesquière", 1997, 2012, director, "https://www.kering.com/api/download-file/?path=kering_EN_presse_communique_balenciaga_fashion_house_nicolas_ghesquiere_announce_their_joint_decision_end_their_partnership_20121105_pdf_cd973b343f.pdf"],
+    ["balenciaga", "Alexander Wang", 2012, 2015, director, k + "news/balenciaga-alexander-wang-announce-their-joint-decision-not-renew-their-contract/"],
+    ["gucci", "Frida Giannini", 2006, null, "단독 크리에이티브 디렉터 취임", k + "news/creative-director-frida-giannini-ceo-patrizio-di-marco-step-down-from-gucci-marco-bizzarri-appointed-ceo/"],
+    ["gucci", "Alessandro Michele", 2015, 2022, director, k + "news/alessandro-michele-stepping-down-as-gucci-s-creative-director/"],
+    ["gucci", "Sabato De Sarno", 2023, 2025, director, "https://www.kering.com/api/download-file/?path=Press_release_Gucci_ends_its_collaboration_with_Sabato_De_Sarno_06_02_25_fb780d1524.pdf"],
+    ["bottega", "Tomas Maier", 2001, 2018, director, k + "news/bottega-veneta-tomas-maier-end-their-collaboration/"],
+    ["bottega", "Daniel Lee", 2018, 2021, director, k + "news/bottega-veneta-appoints-matthieu-blazy-as-creative-director/"],
+    ["bottega", "Louise Trotter", 2025, null, director + " 취임", k + "news/louise-trotter-appointed-creative-director-of-bottega-veneta/"],
+    ["mcqueen", "Sarah Burton", 2010, 2023, director, k + "news/the-alexander-mc-queen-fashion-house-and-sarah-burton-announce-the-end-of-their-collaboration/"],
+    ["mcqueen", "Seán McGirr", 2023, 2026, director, k + "news/alexander-mc-queen-announces-the-departure-of-creative-director-sean-mc-girr/"],
+    ["dior", "Marc Bohan", 1960, 1989, director, diorHistory],
+    ["dior", "Gianfranco Ferré", 1989, 1996, "여성복 크리에이티브 디렉터", diorHistory],
+    ["dior", "Raf Simons", 2012, 2015, artistic, diorHistory],
+    ["dior", "Maria Grazia Chiuri", 2016, null, "여성복 크리에이티브 디렉터 임명", diorHistory],
+    ["dior", "Kim Jones", 2018, null, "남성복 아티스틱 디렉터 취임", l + "news-lvmh/from-new-look-to-new-wave-kim-jones-fetes-fifth-anniversary-as-artistic-director-with-dior-summer-2024-mens-show/"],
+    ["givenchy", "John Galliano", 1995, null, director + " 임명", m + "762089"],
+    ["givenchy", "Riccardo Tisci", 2005, 2017, artistic, "https://www.gtg.ch/wp-content/uploads/2023/10/GTG_23-24_Dossier_presse_Elements_02.pdf"],
+    ["givenchy", "Clare Waight Keller", 2017, null, artistic + " 임명", "https://press.givenchy.com/maison-givenchy/?lang=eng"],
+    ["givenchy", "Matthew M. Williams", 2023, null, "2024 S/S 남성복 디자인", l + "news-lvmh/givenchy-presents-spring-summer-2024-mens-collection-at-hotel-des-invalides"],
+    ["vuitton", "Marc Jacobs", 1997, 2013, artistic, "https://us.louisvuitton.com/eng-us/magazine/articles/heritage"],
+    ["vuitton", "Virgil Abloh", 2018, 2021, "남성복 아티스틱 디렉터", l + "publications/the-passing-of-virgil-abloh"],
+    ["vuitton", "Pharrell Williams", 2023, null, "남성복 크리에이티브 디렉터 취임", pharrellVuitton],
+    ["fendi", "Kim Jones", 2024, null, "2025 S/S 여성복 디자인", l + "news-lvmh/timeless-sensuality-shapes-fendi-springsummer-2025"],
+    ["fendi", "Maria Grazia Chiuri", 2025, null, "최고 크리에이티브 책임자 임명", chiuriFendi],
+    ["celine", "Phoebe Philo", 2008, 2018, director, "https://collections.arts.ac.uk/people/9443/phoebe-philo"],
+    ["loewe", "Jack McCollough", 2025, null, "공동 크리에이티브 디렉터 취임", loeweHistory],
+    ["loewe", "Lazaro Hernandez", 2025, null, "공동 크리에이티브 디렉터 취임", loeweHistory],
+    ["kenzo", "Nigo", 2021, null, "아티스틱 디렉터 임명", "https://gshock.casio.com/ph/contents/nigo-gshock/"],
+    ["pucci", "Camille Miceli", 2025, null, "2025 S/S 디자인", l + "news-lvmh/pucci-presents-spring-summer-2025-collection-in-portofino"],
+    ["patou", "Guillaume Henry", 2023, null, "2024 S/S 디자인", l + "news-lvmh/party-time-for-patou-springsummer-2024-collection/"],
+    ["chanel", "Virginie Viard", 2019, null, "패션 아티스틱 디렉터 취임", "https://www.chanel.com/ee/about-chanel/the-house-of-chanel/2010/"],
+    ["valentino", "Maria Grazia Chiuri", 2008, 2016, "공동 크리에이티브 디렉터", "https://www.youtube.com/watch?v=CBfHq766cRw"],
+    ["valentino", "Pierpaolo Piccioli", 2008, 2016, "공동 크리에이티브 디렉터", "https://www.youtube.com/watch?v=CBfHq766cRw"],
+    ["valentino", "Pierpaolo Piccioli", 2016, 2024, "단독 크리에이티브 디렉터", valentino],
+    ["valentino", "Alessandro Michele", 2024, null, director + " 취임", valentino],
+    ["versace", "Pieter Mulier", 2026, null, "최고 크리에이티브 책임자 임명", p + "news-media/press-releases-documents/2026/26-02-05-versace-pietermulier-chief-creative-officer.html"],
+    ["margiela", "Glenn Martens", 2025, null, director + " 취임", margielaHistory],
+    ["cdg", "Junya Watanabe", 2006, null, "꼼데가르송 출신 · 2006 S/S 준야 와타나베 라인", m + "692451"],
+    ["jil-sander", "Raf Simons", 2009, null, "2009 S/S 디자인", m + "154674"],
+    ["jil-sander", "Simone Bellotti", 2025, null, director + " 임명", otb + "jil-sander-appoints-new-creative-director"],
+    ["saint-laurent", "Stefano Pilati", 2004, 2012, director, "https://www.kering.com/cn/news/yves-saint-laurent-announces-departure-creative-director-stefano-pilati/"],
+    ["saint-laurent", "Tom Ford", 2004, null, "2004–05 F/W 디자인", "https://www.metmuseum.org/exhibitions/listings/2015/china-through-the-looking-glass/images"],
+    ["versace", "Donatella Versace", 1997, 2025, "크리에이티브 총괄", versaceSuccession],
+    ["versace", "Dario Vitale", 2025, null, "최고 크리에이티브 책임자 임명", versaceSuccession],
+    ["hermes", "Jean Paul Gaultier", 2003, 2010, "여성복 아티스틱 디렉터", "https://madparis.fr/jean-paul-gaultier-2682"],
+    ["hermes", "Nadège Vanhée-Cybulski", 2014, null, "여성복 아티스틱 디렉터 임명", "https://assets-finance.hermes.com/s3fs-public/node/pdf_file/2020-04/hermes_2017_rapportactivit%C3%A9_fr.pdf"],
+    ["westwood", "Andreas Kronthaler", 2016, null, "Andreas Kronthaler for Vivienne Westwood 첫 컬렉션", "https://www.viviennewestwood.com/westwood-world/the-story-so-far/"]
   ];
 
   // 하우스 ID, 시즌 시작 연도, 표시할 시즌, Met 소장품 ID 또는 공식 쇼 URL.
@@ -186,7 +240,27 @@
     ["alaia", 1988, "1988 S/S", 138457],
     ["alaia", 1994, "1994 S/S", 693863],
     ["armani", 1987, "1987 S/S", "https://collections.lacma.org/object/138193"],
-    ["armani", 1990, "1990 S/S", 79609]
+    ["armani", 1990, "1990 S/S", 79609],
+    ["balenciaga", 2004, "2004–05 F/W · Nicolas Ghesquière", 162915],
+    ["dior", 1963, "1963 S/S · Marc Bohan", 94987],
+    ["dior", 1967, "1967 S/S · Marc Bohan", 94883],
+    ["dior", 2013, "2013 S/S · Raf Simons", 680135],
+    ["dior", 2013, "2013–14 F/W · Raf Simons", 646433],
+    ["dior", 2014, "2014–15 F/W · Raf Simons", 700964],
+    ["dior", 2024, "2024–25 F/W · Maria Grazia Chiuri", l + "news-lvmh/creative-femininity-infuses-dior-fall-winter-2024-2025/"],
+    ["givenchy", 1998, "1998–99 F/W · Alexander McQueen", 82536],
+    ["givenchy", 2008, "2008 S/S · Riccardo Tisci", "https://www.metmuseum.org/exhibitions/listings/2013/punk/images"],
+    ["givenchy", 2024, "2024 S/S · 남성복 · Matthew M. Williams", l + "news-lvmh/givenchy-presents-spring-summer-2024-mens-collection-at-hotel-des-invalides"],
+    ["vuitton", 2024, "2024 S/S · 남성복 · Pharrell Williams", l + "news-lvmh/louis-vuitton-kicks-off-paris-fashion-week-for-men-with-pharrell-williams-first-springsummer-2024-collection/"],
+    ["fendi", 2025, "2025 S/S · Kim Jones", l + "news-lvmh/timeless-sensuality-shapes-fendi-springsummer-2025"],
+    ["fendi", 2026, "2026–27 F/W · Maria Grazia Chiuri", l + "news-lvmh/maria-grazia-chiuri-presents-first-collection-for-fendi-fall-winter-2026-2027"],
+    ["celine", 2013, "2013–14 F/W · Phoebe Philo", 701407],
+    ["celine", 2026, "2026 S/S · Michael Rider", l + "news-lvmh/michael-rider-debuts-at-celine-with-stellar-spring-2026-collection"],
+    ["patou", 2024, "2024 S/S · Guillaume Henry", l + "news-lvmh/party-time-for-patou-springsummer-2024-collection/"],
+    ["jil-sander", 2009, "2009 S/S · Raf Simons", 154674],
+    ["saint-laurent", 2005, "2005–06 F/W · Stefano Pilati", 767080],
+    ["saint-laurent", 2004, "2004–05 F/W · Tom Ford", "https://www.metmuseum.org/exhibitions/listings/2015/china-through-the-looking-glass/images"],
+    ["givenchy", 2026, "2026–27 F/W · Sarah Burton", l + "news-lvmh/givenchy-unveils-womens-fall-winter-2026-ready-to-wear-collection-by-sarah-burton"]
   ];
 
   const houseMap = new Map(houses.map(([id, name, url]) => [id, { id, name, url, type: "brand" }]));
@@ -196,7 +270,7 @@
   const founders = new Set(careers.filter(row => row[4].includes("창립") || row[4].includes("설립")).map(row => row[1]));
   const countText = people.length + "개 노드 · " + careers.length + "개 관계 · " + seasons.length + "개 시즌 링크";
   const normalize = value => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
-  const instances = new WeakMap();
+  const instances = new Map();
 
   function element(tag, className, value) {
     const node = document.createElement(tag);
@@ -245,8 +319,15 @@
     let zoom = 1;
     let spinning = false;
     let pointer = null;
+    let suppressClickUntil = 0;
     let last = 0;
-    let frameId;
+    let frameId = null;
+
+    // Let the browser scroll the Cargo page vertically and reserve sideways swipes for Orbit.
+    space.style.setProperty("touch-action", "pan-y", "important");
+    if (CSS.supports("touch-action", "pan-y pinch-zoom")) {
+      space.style.setProperty("touch-action", "pan-y pinch-zoom", "important");
+    }
 
     const canvas = element("canvas");
     canvas.setAttribute("aria-hidden", "true");
@@ -264,16 +345,24 @@
       on(node, "click", () => select(item.id));
       layer.append(node);
 
-      // Spread houses and designers across the same sphere.
+      // Use uneven radii and a tilted band so the silhouette changes as it rotates.
       const latitude = ((index + 0.5) * 0.7548776662) % 1;
       const y = 1 - 2 * latitude;
-      const ring = Math.sqrt(1 - y * y);
       const azimuth = index * Math.PI * (3 - Math.sqrt(5));
-      return [item.id, { node, x: ring * Math.cos(azimuth), y, z: ring * Math.sin(azimuth) }];
+      const radius = (0.66 + 0.28 * (((index + 1) * 0.6180339887) % 1)) *
+        (1 + 0.16 * Math.cos(3 * azimuth + y));
+      const ring = radius * Math.sqrt(1 - y * y);
+      const x = ring * Math.cos(azimuth);
+      const z = ring * Math.sin(azimuth);
+      return [item.id, { node, x: x * 1.15, y: y * radius * 0.82 + x * 0.22, z }];
     }));
+    const resize = typeof ResizeObserver === "function" ? new ResizeObserver(requestRender) : null;
+    if (resize) resize.observe(space);
+    else on(window, "resize", requestRender);
     instances.set(host, { layer, detail, space, marker: canvas, dispose() {
       events.abort();
-      cancelAnimationFrame(frameId);
+      resize?.disconnect();
+      if (frameId !== null) cancelAnimationFrame(frameId);
     } });
 
     function renderDetail() {
@@ -309,7 +398,8 @@
           const row = element("div", "career");
           const archiveLink = link(typeof url === "number" ? m + url : url,
             title + (typeof url === "number" ? " · Met 소장품" :
-              url.startsWith("https://collections.lacma.org/") ? " · LACMA 소장품" : " · 공식 자료"));
+              url.startsWith("https://collections.lacma.org/") ? " · LACMA 소장품" :
+              url.startsWith("https://www.metmuseum.org/") ? " · Met 전시 자료" : " · 공식 자료"));
           archiveLink.style.setProperty("color", "#fff", "important");
           row.append(archiveLink);
           detail.append(row);
@@ -336,6 +426,7 @@
       if (back) back.disabled = history.length === 0;
       const count = find("#index-count");
       if (count) count.textContent = matches.length + "개 표시";
+      requestRender();
       if (!list) return;
       list.replaceChildren();
       if (!matches.length) list.append(element("p", "intro", "검색 결과가 없습니다."));
@@ -357,20 +448,26 @@
       renderDetail();
     }
 
+    function requestRender() {
+      if (frameId === null) frameId = requestAnimationFrame(frame);
+    }
+
     function frame(time) {
+      frameId = null;
       if (!host.isConnected || !host.contains(canvas)) {
         instances.get(host)?.dispose();
         instances.delete(host);
         return;
       }
-      const dt = last ? Math.min(time - last, 50) : 0;
+      const dt = last ? Math.min(time - last, 50) : 16.67;
       last = time;
       if (spinning && !pointer) yaw += dt * 0.00045;
       const width = space.clientWidth;
       const height = space.clientHeight;
       const value = depth ? Number(depth.value) : 1.15;
       const zDepth = Number.isFinite(value) ? Math.max(0, Math.min(3, value)) : 1.15;
-      const radius = Math.min(width * 0.35, height * 0.34) * zoom;
+      const radius = Math.min(width * 0.39, height * 0.38) * zoom;
+      const labelScale = Math.min(1, Math.max(0.71, width / 650));
       const cy = Math.cos(yaw), sy = Math.sin(yaw);
       const cp = Math.cos(pitch), sp = Math.sin(pitch);
       const points = new Map();
@@ -391,7 +488,8 @@
         const px = width / 2 + x * radius * perspective;
         const py = height / 2 + y * radius * perspective;
         const active = selected === id;
-        const scale = (active ? 0.95 : byId.get(id).type === "brand" ? 0.69 : 0.56) * perspective;
+        const baseScale = byId.get(id).type === "brand" ? 0.69 : 0.56;
+        const scale = (active ? 0.86 : baseScale * labelScale) * perspective;
         view.node.style.transform = `translate(${px}px, ${py}px) translate(-50%, -50%) scale(${scale})`;
         view.node.style.zIndex = active ? "350" : String(Math.round(150 + front * 30));
         view.node.style.opacity = !selected || active || related.has(id) ? "1" : "0.24";
@@ -417,7 +515,7 @@
         }
         context.stroke();
       }
-      frameId = requestAnimationFrame(frame);
+      if (spinning && !pointer) requestRender();
     }
 
     for (const input of searches) {
@@ -435,12 +533,19 @@
     on(typeFilter, "change", renderIndex);
     on(depth, "input", () => {
       if (depthValue) depthValue.textContent = Number(depth.value).toFixed(2) + "×";
+      requestRender();
     });
     on(back, "click", () => { if (history.length) select(history.pop(), false); });
-    on(find("#plus"), "click", () => { zoom = Math.min(1.6, zoom + 0.1); });
-    on(find("#minus"), "click", () => { zoom = Math.max(0.5, zoom - 0.1); });
+    function changeZoom(delta) {
+      zoom = Math.max(0.5, Math.min(1.6, zoom + delta));
+      requestRender();
+    }
+    on(find("#plus"), "click", () => changeZoom(0.1));
+    on(find("#minus"), "click", () => changeZoom(-0.1));
     function setSpin(value) {
+      if (value && !spinning) last = 0;
       spinning = value;
+      requestRender();
       if (rotate) {
         rotate.setAttribute("aria-pressed", String(spinning));
         rotate.textContent = spinning ? "회전 정지" : "자동 회전";
@@ -465,21 +570,48 @@
       renderDetail();
     });
 
+    space.addEventListener("click", event => {
+      if (event.detail === 0 || performance.now() >= suppressClickUntil) return;
+      event.preventDefault();
+      event.stopPropagation();
+    }, { capture: true, signal: events.signal });
+
     on(space, "pointerdown", event => {
-      if (pointer || !event.isPrimary || event.button !== 0 ||
-          event.target.closest("button, input, label, select, a, textarea")) return;
-      pointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
-      space.setPointerCapture(event.pointerId);
+      if (pointer || !event.isPrimary || event.button !== 0) return;
+      const control = event.target.closest("button, input, label, select, a, textarea, [role='button']");
+      if (control && (!control.matches(".node") || !layer.contains(control))) return;
+      suppressClickUntil = 0;
+      pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, dragging: false };
     });
     on(space, "pointermove", event => {
       if (pointer?.id !== event.pointerId) return;
-      yaw += (event.clientX - pointer.x) * 0.01;
-      pitch = Math.max(-1.4, Math.min(1.4, pitch + (event.clientY - pointer.y) * 0.01));
+      const dx = event.clientX - pointer.x;
+      const dy = event.clientY - pointer.y;
+      if (!pointer.dragging) {
+        if (Math.hypot(dx, dy) < 7) return;
+        if (event.pointerType === "touch" && Math.abs(dy) > Math.abs(dx)) {
+          pointer = null;
+          requestRender();
+          return;
+        }
+        pointer.dragging = true;
+        space.setPointerCapture(event.pointerId);
+      }
+      yaw += dx * 0.01;
+      pitch = Math.max(-1.4, Math.min(1.4, pitch + dy * 0.01));
       pointer.x = event.clientX;
       pointer.y = event.clientY;
+      requestRender();
     });
-    for (const type of ["pointerup", "pointercancel", "lostpointercapture"]) {
-      on(space, type, event => { if (pointer?.id === event.pointerId) pointer = null; });
+    for (const type of ["pointerup", "pointercancel", "lostpointercapture", "pointerleave"]) {
+      on(space, type, event => {
+        if (pointer?.id !== event.pointerId ||
+            (type === "lostpointercapture" && event.target !== space) ||
+            (type === "pointerleave" && pointer.dragging && space.hasPointerCapture(event.pointerId))) return;
+        if (pointer.dragging) suppressClickUntil = performance.now() + 400;
+        pointer = null;
+        requestRender();
+      });
     }
 
     host.dataset.orbitInteractive = "true";
@@ -489,13 +621,20 @@
     setSpin(false);
     renderIndex();
     renderDetail();
-    frameId = requestAnimationFrame(frame);
+    requestRender();
   }
 
   const engine = Symbol.for("fashion-orbit.github.engine");
   if (document[engine]) return;
   document[engine] = true;
-  const scan = () => document.querySelectorAll("#fashion-orbit").forEach(initialize);
+  function scan() {
+    for (const [host, instance] of instances) {
+      if (host.isConnected) continue;
+      instance.dispose();
+      instances.delete(host);
+    }
+    document.querySelectorAll("#fashion-orbit").forEach(initialize);
+  }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", scan, { once: true });
   else scan();
   new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
