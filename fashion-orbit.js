@@ -343,16 +343,35 @@
     layer.replaceChildren(canvas);
     layer.style.overflow = "hidden";
 
-    const columns = Math.ceil(Math.sqrt(people.length * 1.55));
-    const rows = Math.ceil(people.length / columns);
-    const slots = Array(people.length);
-    houses.forEach(([id], index) => { slots[Math.floor(index * people.length / houses.length)] = byId.get(id); });
-    let nextDesigner = houses.length;
-    for (let i = 0; i < slots.length; i++) {
-      if (!slots[i]) slots[i] = people[nextDesigner++];
+    // Fill an asymmetrical band with separated points. A fixed seed keeps each node in place.
+    let seed = 318713;
+    function random() {
+      seed = (Math.imul(1664525, seed) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    const positions = [{ x: -0.96, y: 0.09 }, { x: 0.96, y: -0.23 }].slice(0, people.length);
+    while (positions.length < people.length) {
+      let best;
+      let bestDistance = -1;
+      for (let attempt = 0; attempt < 48; attempt++) {
+        const x = random() * 1.92 - 0.96;
+        const center = -0.22 * x + 0.17 * Math.sin(3.8 * x);
+        const halfHeight = 0.74 - 0.28 * Math.abs(x) + 0.12 * Math.cos(6.1 * x);
+        const y = center + (2 * random() - 1) * halfHeight;
+        let separation = Infinity;
+        for (const point of positions) {
+          const dx = (point.x - x) * 1.45;
+          const dy = point.y - y;
+          separation = Math.min(separation, dx * dx + dy * dy);
+        }
+        if (separation <= bestDistance) continue;
+        best = { x, y };
+        bestDistance = separation;
+      }
+      positions.push(best);
     }
 
-    const nodes = new Map(slots.map((item, index) => {
+    const nodes = new Map(people.map((item, index) => {
       const node = element("button", "node " + item.type);
       const mark = item.name.split(/\s+/).slice(0, 2).map(word => Array.from(word)[0]).join("");
       const disc = element("span", "disc");
@@ -381,17 +400,12 @@
       });
       layer.append(node);
 
-      // Stagger adjacent rows and vary the depth without collapsing the overview into a ball.
-      const column = index % columns;
-      const row = Math.floor(index / columns);
-      const jitter = Math.sin(index * 12.9898);
-      const x = 2 * (column + 0.5 + (row % 2 - 0.5) * 0.32 + jitter * 0.16) / columns - 1;
-      const y = 2 * (row + 0.5 + Math.cos(index * 7.91) * 0.24) / rows - 1 + x * 0.06;
-      const z = Math.sin(x * 4.4 + y * 2.6) * 0.32 + jitter * 0.16;
+      const { x, y } = positions[index];
+      const z = Math.sin(x * 4.4 + y * 2.6) * 0.29 + (random() - 0.5) * 0.18;
       return [item.id, { node, name, category, x, y, z }];
     }));
     const resize = typeof ResizeObserver === "function" ? new ResizeObserver(requestRender) : null;
-    if (resize) resize.observe(space);
+    if (resize) resize.observe(layer);
     else on(window, "resize", requestRender);
     instances.set(host, { layer, detail, space, marker: canvas, dispose() {
       events.abort();
@@ -504,12 +518,12 @@
         spinPhase += dt * 0.00048;
         yaw = spinCenter + Math.sin(spinPhase) * 0.39;
       }
-      const width = space.clientWidth;
-      const height = space.clientHeight;
+      const width = layer.clientWidth || space.clientWidth;
+      const height = layer.clientHeight || space.clientHeight;
       const value = depth ? Number(depth.value) : 1.15;
       const zDepth = Number.isFinite(value) ? Math.max(0, Math.min(3, value)) : 1.15;
-      const spanX = width * 0.46;
-      const spanY = height * 0.36;
+      const spanX = width * 0.48;
+      const spanY = height * 0.46;
       const cy = Math.cos(yaw), sy = Math.sin(yaw);
       const cp = Math.cos(pitch), sp = Math.sin(pitch);
       const projected = new Map();
@@ -704,8 +718,9 @@
 
     host.dataset.orbitInteractive = "true";
     host.dataset.githubConnected = "true";
+    host.dataset.orbitLayout = "wide-map";
     const status = find(".sample");
-    if (status) status.textContent = countText;
+    if (status) status.textContent = countText + " · WIDE MAP";
     setSpin(false);
     renderIndex();
     renderDetail();
