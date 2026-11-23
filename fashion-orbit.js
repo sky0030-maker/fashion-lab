@@ -16,10 +16,10 @@
   const pharrellVuitton = l + "news-lvmh/pharrell-williams-lights-up-paris-for-louis-vuitton";
   const versaceSuccession = "https://www.capriholdings.com/news/news-details/2025/Donatella-Versace-Assumes-Role-of-Chief-Brand-Ambassador-of-Versace/default.aspx";
   const otb = "https://www.otb.net/en/news/";
-  const founder = "창립";
-  const cofounder = "공동 창립";
-  const director = "크리에이티브 디렉터";
-  const artistic = "아티스틱 디렉터";
+  const founder = "Founder";
+  const cofounder = "Co-founder";
+  const director = "Creative director";
+  const artistic = "Artistic director";
 
   // 하우스 ID, 표기명, 배경 자료
   const houses = [
@@ -61,43 +61,43 @@
     ["balenciaga", "Cristóbal Balenciaga", 1917, null, founder],
     ["balenciaga", "Demna", 2015, 2025, artistic, k + "news/demna-appointed-artistic-director-of-gucci/"],
     ["balenciaga", "Pierpaolo Piccioli", 2025, 2026, director],
-    ["balenciaga", "Martine Rose", 2026, null, director + " 임명", k + "news/martine-rose-appointed-creative-director-of-balenciaga/"],
+    ["balenciaga", "Martine Rose", 2026, null, "Appointed " + director.toLowerCase(), k + "news/martine-rose-appointed-creative-director-of-balenciaga/"],
     ["gucci", "Guccio Gucci", 1921, null, founder],
-    ["gucci", "Tom Ford", 1994, null, "수석 디자이너 임명", m + "81266"],
-    ["gucci", "Demna", 2025, null, artistic + " 임명", k + "news/demna-appointed-artistic-director-of-gucci/"],
+    ["gucci", "Tom Ford", 1994, null, "Appointed head designer", m + "81266"],
+    ["gucci", "Demna", 2025, null, "Appointed " + artistic.toLowerCase(), k + "news/demna-appointed-artistic-director-of-gucci/"],
     ["saint-laurent", "Yves Saint Laurent", 1961, null, cofounder],
     ["saint-laurent", "Pierre Bergé", 1961, null, cofounder],
-    ["saint-laurent", "Anthony Vaccarello", 2016, null, director + " 임명", k + "news/yves-saint-laurent-appoints-anthony-vaccarello-as-creative-director/"],
+    ["saint-laurent", "Anthony Vaccarello", 2016, null, "Appointed " + director.toLowerCase(), k + "news/yves-saint-laurent-appoints-anthony-vaccarello-as-creative-director/"],
     ["bottega", "Michele Taddei", 1966, null, cofounder],
     ["bottega", "Renzo Zengiaro", 1966, null, cofounder],
-    ["bottega", "Matthieu Blazy", 2021, null, director + " 임명", "https://www.kering.com/api/download-file/?path=Press_release_Bottega_Veneta_appoints_Matthieu_Blazy_as_Creative_Director_15_11_21_f71ea4ea15.pdf"],
+    ["bottega", "Matthieu Blazy", 2021, null, "Appointed " + director.toLowerCase(), "https://www.kering.com/api/download-file/?path=Press_release_Bottega_Veneta_appoints_Matthieu_Blazy_as_Creative_Director_15_11_21_f71ea4ea15.pdf"],
     ["mcqueen", "Alexander McQueen", 1992, null, founder, m + "930535"],
     ["dior", "Christian Dior", 1946, null, founder],
     ["dior", "Yves Saint Laurent", 1957, 1960, artistic, "https://museeyslparis.com/en/stories/les-annees-dior-1-1"],
     ["dior", "John Galliano", 1996, 2011, director, diorHistory],
-    ["dior", "Jonathan Anderson", 2025, null, "여성복·남성복·오트 쿠튀르 크리에이티브 디렉터 임명", diorHistory],
+    ["dior", "Jonathan Anderson", 2025, null, "Appointed creative director of womenswear, menswear and haute couture", diorHistory],
     ["givenchy", "Hubert de Givenchy", 1952, null, founder],
-    ["givenchy", "Alexander McQueen", 1997, null, "1997 S/S 쿠튀르 디자인", m + "931292"],
+    ["givenchy", "Alexander McQueen", 1997, null, "Designed the S/S 1997 couture collection", m + "931292"],
     ["vuitton", "Louis Vuitton", 1854, null, founder],
     ["fendi", "Adele Fendi", 1925, null, cofounder],
     ["fendi", "Edoardo Fendi", 1925, null, cofounder],
-    ["fendi", "Karl Lagerfeld", 1965, 2019, "디자인 협업", l + "news-lvmh/fendi-celebrates-opening-of-karl-lagerfeld-a-line-of-beauty-exhibition-at-the-metropolitan-museum-of-art-in-new-york"],
+    ["fendi", "Karl Lagerfeld", 1965, 2019, "Design collaboration", l + "news-lvmh/fendi-celebrates-opening-of-karl-lagerfeld-a-line-of-beauty-exhibition-at-the-metropolitan-museum-of-art-in-new-york"],
     ["celine", "Céline Vipiana", 1945, null, founder, l + "our-group/history/"],
-    ["celine", "Michael Rider", 2025, null, "2026 S/S 데뷔", l + "news-lvmh/michael-rider-debuts-at-celine-with-stellar-spring-2026-collection"],
-    ["loewe", "Enrique Loewe Roessberg", 1872, null, "가죽 공방 인수 · 하우스 명칭의 유래", "https://www.loewe.com/eur/en/pd/stories/welcome-to-loewe.html"],
-    ["loewe", "Jonathan Anderson", 2025, null, "2025 F/W 디자인", l + "news-lvmh/fashion-art-and-craft-for-loewe-fall-winter-2025/"],
+    ["celine", "Michael Rider", 2025, null, "Debut collection, S/S 2026", l + "news-lvmh/michael-rider-debuts-at-celine-with-stellar-spring-2026-collection"],
+    ["loewe", "Enrique Loewe Roessberg", 1872, null, "Acquired the leather workshop and gave the house its name", "https://www.loewe.com/eur/en/pd/stories/welcome-to-loewe.html"],
+    ["loewe", "Jonathan Anderson", 2025, null, "Designed the F/W 2025 collection", l + "news-lvmh/fashion-art-and-craft-for-loewe-fall-winter-2025/"],
     ["kenzo", "Kenzo Takada", 1970, null, founder],
     ["pucci", "Emilio Pucci", 1947, null, founder],
     ["patou", "Jean Patou", 1914, null, founder],
     ["chanel", "Gabrielle Chanel", 1910, null, founder],
     ["chanel", "Karl Lagerfeld", 1983, 2019, artistic, "https://www.chanel.com/in/about-chanel/the-house-of-chanel/1980/"],
-    ["chanel", "Matthieu Blazy", 2025, null, artistic + " 취임", "https://www.chanel.com/au/fashion/event/chanel-fashion-new-artistic-director/"],
+    ["chanel", "Matthieu Blazy", 2025, null, "Became " + artistic.toLowerCase(), "https://www.chanel.com/au/fashion/event/chanel-fashion-new-artistic-director/"],
     ["prada", "Mario Prada", 1913, null, founder],
-    ["prada", "Miuccia Prada", 2020, null, "공동 크리에이티브 디렉션 발표", p + "news-media/press-releases-documents/2020/20-09-24-dialogues-prada-ss2021-womenswear.html"],
-    ["prada", "Raf Simons", 2020, null, "공동 크리에이티브 디렉션 발표", p + "news-media/press-releases-documents/2020/20-09-24-dialogues-prada-ss2021-womenswear.html"],
+    ["prada", "Miuccia Prada", 2020, null, "Announced joint creative direction", p + "news-media/press-releases-documents/2020/20-09-24-dialogues-prada-ss2021-womenswear.html"],
+    ["prada", "Raf Simons", 2020, null, "Announced joint creative direction", p + "news-media/press-releases-documents/2020/20-09-24-dialogues-prada-ss2021-womenswear.html"],
     ["miu-miu", "Miuccia Prada", 1993, null, founder],
     ["hermes", "Thierry Hermès", 1837, null, founder],
-    ["hermes", "Martin Margiela", 1997, 2003, "여성복 아티스틱 디렉터", "https://www.momu.be/en/exhibitions/new-entry-2"],
+    ["hermes", "Martin Margiela", 1997, 2003, "Artistic director of womenswear", "https://www.momu.be/en/exhibitions/new-entry-2"],
     ["valentino", "Valentino Garavani", 1960, null, cofounder],
     ["valentino", "Giancarlo Giammetti", 1960, null, cofounder],
     ["armani", "Giorgio Armani", 1975, null, cofounder],
@@ -105,72 +105,72 @@
     ["versace", "Gianni Versace", 1978, null, founder],
     ["margiela", "Martin Margiela", 1988, null, cofounder],
     ["margiela", "Jenny Meirens", 1988, null, cofounder],
-    ["gaultier", "Jean Paul Gaultier", 1976, null, "첫 컬렉션 발표"],
-    ["gaultier", "Martin Margiela", 1984, 1987, "디자인 어시스턴트", "https://www.momu.be/en/collection-stories/martin-margiela"],
-    ["margiela", "John Galliano", 2014, null, director + " 임명"],
+    ["gaultier", "Jean Paul Gaultier", 1976, null, "Presented first collection"],
+    ["gaultier", "Martin Margiela", 1984, 1987, "Design assistant", "https://www.momu.be/en/collection-stories/martin-margiela"],
+    ["margiela", "John Galliano", 2014, null, "Appointed " + director.toLowerCase()],
     ["cdg", "Rei Kawakubo", 1969, null, founder],
-    ["miyake", "Issey Miyake", 1970, null, "Miyake Design Studio 설립"],
-    ["yohji", "Yohji Yamamoto", 1981, null, "파리 컬렉션 데뷔"],
+    ["miyake", "Issey Miyake", 1970, null, "Founded Miyake Design Studio"],
+    ["yohji", "Yohji Yamamoto", 1981, null, "Paris runway debut"],
     ["schiaparelli", "Elsa Schiaparelli", 1927, null, founder],
-    ["schiaparelli", "Daniel Roseberry", 2019, null, artistic + " 임명", "https://schiaparelli.com/en/pages/daniel-roseberry"],
-    ["alaia", "Azzedine Alaïa", 1981, null, "1981 S/S 첫 기성복 컬렉션", "https://fondationazzedinealaia.org/wp-content/uploads/2022/11/RAPPORT_FAA_2018_2020.pdf"],
-    ["westwood", "Vivienne Westwood", 1981, null, "Pirate 컬렉션 공동 발표"],
-    ["westwood", "Malcolm McLaren", 1981, null, "Pirate 컬렉션 공동 발표"],
+    ["schiaparelli", "Daniel Roseberry", 2019, null, "Appointed " + artistic.toLowerCase(), "https://schiaparelli.com/en/pages/daniel-roseberry"],
+    ["alaia", "Azzedine Alaïa", 1981, null, "First ready-to-wear collection, S/S 1981", "https://fondationazzedinealaia.org/wp-content/uploads/2022/11/RAPPORT_FAA_2018_2020.pdf"],
+    ["westwood", "Vivienne Westwood", 1981, null, "Co-presented the Pirate collection"],
+    ["westwood", "Malcolm McLaren", 1981, null, "Co-presented the Pirate collection"],
     ["jil-sander", "Jil Sander", 1968, null, founder],
     ["saint-laurent", "Hedi Slimane", 2012, 2016, director, k + "news/yves-saint-laurent-appoints-anthony-vaccarello-as-creative-director/"],
-    ["celine", "Hedi Slimane", 2018, null, "아티스틱·크리에이티브·이미지 디렉터 임명", l + "publications/hedi-slimane-named-artistic-creative-and-image-director-of-celine"],
-    ["givenchy", "Sarah Burton", 2024, null, director + " 임명", l + "news-lvmh/sarah-burton-appointed-creative-director-of-givenchy/"],
-    ["vuitton", "Nicolas Ghesquière", 2013, null, "여성복 아티스틱 디렉터 임명", "https://us.louisvuitton.com/eng-us/magazine/articles/nicolas-ghesquiere"],
+    ["celine", "Hedi Slimane", 2018, null, "Appointed artistic, creative and image director", l + "publications/hedi-slimane-named-artistic-creative-and-image-director-of-celine"],
+    ["givenchy", "Sarah Burton", 2024, null, "Appointed " + director.toLowerCase(), l + "news-lvmh/sarah-burton-appointed-creative-director-of-givenchy/"],
+    ["vuitton", "Nicolas Ghesquière", 2013, null, "Appointed artistic director of womenswear", "https://us.louisvuitton.com/eng-us/magazine/articles/nicolas-ghesquiere"],
     ["balenciaga", "Nicolas Ghesquière", 1997, 2012, director, "https://www.kering.com/api/download-file/?path=kering_EN_presse_communique_balenciaga_fashion_house_nicolas_ghesquiere_announce_their_joint_decision_end_their_partnership_20121105_pdf_cd973b343f.pdf"],
     ["balenciaga", "Alexander Wang", 2012, 2015, director, k + "news/balenciaga-alexander-wang-announce-their-joint-decision-not-renew-their-contract/"],
-    ["gucci", "Frida Giannini", 2006, null, "단독 크리에이티브 디렉터 취임", k + "news/creative-director-frida-giannini-ceo-patrizio-di-marco-step-down-from-gucci-marco-bizzarri-appointed-ceo/"],
+    ["gucci", "Frida Giannini", 2006, null, "Became sole creative director", k + "news/creative-director-frida-giannini-ceo-patrizio-di-marco-step-down-from-gucci-marco-bizzarri-appointed-ceo/"],
     ["gucci", "Alessandro Michele", 2015, 2022, director, k + "news/alessandro-michele-stepping-down-as-gucci-s-creative-director/"],
     ["gucci", "Sabato De Sarno", 2023, 2025, director, "https://www.kering.com/api/download-file/?path=Press_release_Gucci_ends_its_collaboration_with_Sabato_De_Sarno_06_02_25_fb780d1524.pdf"],
     ["bottega", "Tomas Maier", 2001, 2018, director, k + "news/bottega-veneta-tomas-maier-end-their-collaboration/"],
     ["bottega", "Daniel Lee", 2018, 2021, director, k + "news/bottega-veneta-appoints-matthieu-blazy-as-creative-director/"],
-    ["bottega", "Louise Trotter", 2025, null, director + " 취임", k + "news/louise-trotter-appointed-creative-director-of-bottega-veneta/"],
+    ["bottega", "Louise Trotter", 2025, null, "Became " + director.toLowerCase(), k + "news/louise-trotter-appointed-creative-director-of-bottega-veneta/"],
     ["mcqueen", "Sarah Burton", 2010, 2023, director, k + "news/the-alexander-mc-queen-fashion-house-and-sarah-burton-announce-the-end-of-their-collaboration/"],
     ["mcqueen", "Seán McGirr", 2023, 2026, director, k + "news/alexander-mc-queen-announces-the-departure-of-creative-director-sean-mc-girr/"],
     ["dior", "Marc Bohan", 1960, 1989, director, diorHistory],
-    ["dior", "Gianfranco Ferré", 1989, 1996, "여성복 크리에이티브 디렉터", diorHistory],
+    ["dior", "Gianfranco Ferré", 1989, 1996, "Creative director of womenswear", diorHistory],
     ["dior", "Raf Simons", 2012, 2015, artistic, diorHistory],
-    ["dior", "Maria Grazia Chiuri", 2016, null, "여성복 크리에이티브 디렉터 임명", diorHistory],
-    ["dior", "Kim Jones", 2018, null, "남성복 아티스틱 디렉터 취임", l + "news-lvmh/from-new-look-to-new-wave-kim-jones-fetes-fifth-anniversary-as-artistic-director-with-dior-summer-2024-mens-show/"],
-    ["givenchy", "John Galliano", 1995, null, director + " 임명", m + "762089"],
+    ["dior", "Maria Grazia Chiuri", 2016, null, "Appointed creative director of womenswear", diorHistory],
+    ["dior", "Kim Jones", 2018, null, "Became artistic director of menswear", l + "news-lvmh/from-new-look-to-new-wave-kim-jones-fetes-fifth-anniversary-as-artistic-director-with-dior-summer-2024-mens-show/"],
+    ["givenchy", "John Galliano", 1995, null, "Appointed " + director.toLowerCase(), m + "762089"],
     ["givenchy", "Riccardo Tisci", 2005, 2017, artistic, "https://www.gtg.ch/wp-content/uploads/2023/10/GTG_23-24_Dossier_presse_Elements_02.pdf"],
-    ["givenchy", "Clare Waight Keller", 2017, null, artistic + " 임명", "https://press.givenchy.com/maison-givenchy/?lang=eng"],
-    ["givenchy", "Matthew M. Williams", 2023, null, "2024 S/S 남성복 디자인", l + "news-lvmh/givenchy-presents-spring-summer-2024-mens-collection-at-hotel-des-invalides"],
+    ["givenchy", "Clare Waight Keller", 2017, null, "Appointed " + artistic.toLowerCase(), "https://press.givenchy.com/maison-givenchy/?lang=eng"],
+    ["givenchy", "Matthew M. Williams", 2023, null, "Designed the S/S 2024 menswear collection", l + "news-lvmh/givenchy-presents-spring-summer-2024-mens-collection-at-hotel-des-invalides"],
     ["vuitton", "Marc Jacobs", 1997, 2013, artistic, "https://us.louisvuitton.com/eng-us/magazine/articles/heritage"],
-    ["vuitton", "Virgil Abloh", 2018, 2021, "남성복 아티스틱 디렉터", l + "publications/the-passing-of-virgil-abloh"],
-    ["vuitton", "Pharrell Williams", 2023, null, "남성복 크리에이티브 디렉터 취임", pharrellVuitton],
-    ["fendi", "Kim Jones", 2024, null, "2025 S/S 여성복 디자인", l + "news-lvmh/timeless-sensuality-shapes-fendi-springsummer-2025"],
-    ["fendi", "Maria Grazia Chiuri", 2025, null, "최고 크리에이티브 책임자 임명", chiuriFendi],
+    ["vuitton", "Virgil Abloh", 2018, 2021, "Artistic director of menswear", l + "publications/the-passing-of-virgil-abloh"],
+    ["vuitton", "Pharrell Williams", 2023, null, "Became creative director of menswear", pharrellVuitton],
+    ["fendi", "Kim Jones", 2024, null, "Designed the S/S 2025 womenswear collection", l + "news-lvmh/timeless-sensuality-shapes-fendi-springsummer-2025"],
+    ["fendi", "Maria Grazia Chiuri", 2025, null, "Appointed chief creative officer", chiuriFendi],
     ["celine", "Phoebe Philo", 2008, 2018, director, "https://collections.arts.ac.uk/people/9443/phoebe-philo"],
-    ["loewe", "Jack McCollough", 2025, null, "공동 크리에이티브 디렉터 취임", loeweHistory],
-    ["loewe", "Lazaro Hernandez", 2025, null, "공동 크리에이티브 디렉터 취임", loeweHistory],
-    ["kenzo", "Nigo", 2021, null, "아티스틱 디렉터 임명", "https://gshock.casio.com/ph/contents/nigo-gshock/"],
-    ["pucci", "Camille Miceli", 2025, null, "2025 S/S 디자인", l + "news-lvmh/pucci-presents-spring-summer-2025-collection-in-portofino"],
-    ["patou", "Guillaume Henry", 2023, null, "2024 S/S 디자인", l + "news-lvmh/party-time-for-patou-springsummer-2024-collection/"],
-    ["chanel", "Virginie Viard", 2019, null, "패션 아티스틱 디렉터 취임", "https://www.chanel.com/ee/about-chanel/the-house-of-chanel/2010/"],
-    ["valentino", "Maria Grazia Chiuri", 2008, 2016, "공동 크리에이티브 디렉터", "https://www.youtube.com/watch?v=CBfHq766cRw"],
-    ["valentino", "Pierpaolo Piccioli", 2008, 2016, "공동 크리에이티브 디렉터", "https://www.youtube.com/watch?v=CBfHq766cRw"],
-    ["valentino", "Pierpaolo Piccioli", 2016, 2024, "단독 크리에이티브 디렉터", valentino],
-    ["valentino", "Alessandro Michele", 2024, null, director + " 취임", valentino],
-    ["versace", "Pieter Mulier", 2026, null, "최고 크리에이티브 책임자 임명", p + "news-media/press-releases-documents/2026/26-02-05-versace-pietermulier-chief-creative-officer.html"],
-    ["margiela", "Glenn Martens", 2025, null, director + " 취임", margielaHistory],
-    ["cdg", "Junya Watanabe", 2006, null, "꼼데가르송 출신 · 2006 S/S 준야 와타나베 라인", m + "692451"],
-    ["jil-sander", "Raf Simons", 2009, null, "2009 S/S 디자인", m + "154674"],
-    ["jil-sander", "Simone Bellotti", 2025, null, director + " 임명", otb + "jil-sander-appoints-new-creative-director"],
+    ["loewe", "Jack McCollough", 2025, null, "Became co-creative director", loeweHistory],
+    ["loewe", "Lazaro Hernandez", 2025, null, "Became co-creative director", loeweHistory],
+    ["kenzo", "Nigo", 2021, null, "Appointed artistic director", "https://gshock.casio.com/ph/contents/nigo-gshock/"],
+    ["pucci", "Camille Miceli", 2025, null, "Designed the S/S 2025 collection", l + "news-lvmh/pucci-presents-spring-summer-2025-collection-in-portofino"],
+    ["patou", "Guillaume Henry", 2023, null, "Designed the S/S 2024 collection", l + "news-lvmh/party-time-for-patou-springsummer-2024-collection/"],
+    ["chanel", "Virginie Viard", 2019, null, "Became artistic director of fashion", "https://www.chanel.com/ee/about-chanel/the-house-of-chanel/2010/"],
+    ["valentino", "Maria Grazia Chiuri", 2008, 2016, "Co-creative director", "https://www.youtube.com/watch?v=CBfHq766cRw"],
+    ["valentino", "Pierpaolo Piccioli", 2008, 2016, "Co-creative director", "https://www.youtube.com/watch?v=CBfHq766cRw"],
+    ["valentino", "Pierpaolo Piccioli", 2016, 2024, "Sole creative director", valentino],
+    ["valentino", "Alessandro Michele", 2024, null, "Became " + director.toLowerCase(), valentino],
+    ["versace", "Pieter Mulier", 2026, null, "Appointed chief creative officer", p + "news-media/press-releases-documents/2026/26-02-05-versace-pietermulier-chief-creative-officer.html"],
+    ["margiela", "Glenn Martens", 2025, null, "Became " + director.toLowerCase(), margielaHistory],
+    ["cdg", "Junya Watanabe", 2006, null, "Previously at Comme des Garçons · Junya Watanabe line, S/S 2006", m + "692451"],
+    ["jil-sander", "Raf Simons", 2009, null, "Designed the S/S 2009 collection", m + "154674"],
+    ["jil-sander", "Simone Bellotti", 2025, null, "Appointed " + director.toLowerCase(), otb + "jil-sander-appoints-new-creative-director"],
     ["saint-laurent", "Stefano Pilati", 2004, 2012, director, "https://www.kering.com/cn/news/yves-saint-laurent-announces-departure-creative-director-stefano-pilati/"],
-    ["saint-laurent", "Tom Ford", 2004, null, "2004–05 F/W 디자인", "https://www.metmuseum.org/exhibitions/listings/2015/china-through-the-looking-glass/images"],
-    ["versace", "Donatella Versace", 1997, 2025, "크리에이티브 총괄", versaceSuccession],
-    ["versace", "Dario Vitale", 2025, null, "최고 크리에이티브 책임자 임명", versaceSuccession],
-    ["hermes", "Jean Paul Gaultier", 2003, 2010, "여성복 아티스틱 디렉터", "https://madparis.fr/jean-paul-gaultier-2682"],
-    ["hermes", "Nadège Vanhée-Cybulski", 2014, null, "여성복 아티스틱 디렉터 임명", "https://assets-finance.hermes.com/s3fs-public/node/pdf_file/2020-04/hermes_2017_rapportactivit%C3%A9_fr.pdf"],
-    ["westwood", "Andreas Kronthaler", 2016, null, "Andreas Kronthaler for Vivienne Westwood 첫 컬렉션", "https://www.viviennewestwood.com/westwood-world/the-story-so-far/"]
+    ["saint-laurent", "Tom Ford", 2004, null, "Designed the F/W 2004–05 collection", "https://www.metmuseum.org/exhibitions/listings/2015/china-through-the-looking-glass/images"],
+    ["versace", "Donatella Versace", 1997, 2025, "Led creative direction", versaceSuccession],
+    ["versace", "Dario Vitale", 2025, null, "Appointed chief creative officer", versaceSuccession],
+    ["hermes", "Jean Paul Gaultier", 2003, 2010, "Artistic director of womenswear", "https://madparis.fr/jean-paul-gaultier-2682"],
+    ["hermes", "Nadège Vanhée-Cybulski", 2014, null, "Appointed artistic director of womenswear", "https://assets-finance.hermes.com/s3fs-public/node/pdf_file/2020-04/hermes_2017_rapportactivit%C3%A9_fr.pdf"],
+    ["westwood", "Andreas Kronthaler", 2016, null, "First Andreas Kronthaler for Vivienne Westwood collection", "https://www.viviennewestwood.com/westwood-world/the-story-so-far/"]
   ];
 
-  // 하우스 ID, 시즌 시작 연도, 표시할 시즌, Met 소장품 ID 또는 공식 쇼 URL.
+  // 하우스 ID, 시즌 시작 연도, 표시할 시즌, The Met collection ID 또는 공식 쇼 URL.
   const seasons = [
     ["balenciaga", 1948, "1948 S/S", 81102],
     ["balenciaga", 1952, "1952 S/S", 81461],
@@ -179,19 +179,19 @@
     ["saint-laurent", 1975, "1975–76 F/W", 130326],
     ["mcqueen", 1999, "1999 S/S · No. 13", 163152],
     ["dior", 1997, "1997–98 F/W", 131792],
-    ["dior", 2025, "2025 S/S · 여성복", "https://www.dior.com/en_us/fashion/womens-fashion/ready-to-wear-shows/spring-summer-2025-ready-to-wear-show"],
-    ["dior", 2026, "2026 S/S · 남성복", l + "news-lvmh/jonathan-anderson-presents-debut-collection-for-dior-at-mens-summer-2026-show"],
-    ["dior", 2026, "2026 S/S · 오트 쿠튀르", l + "news-lvmh/jonathan-anderson-presents-debut-dior-haute-couture-collection-spring-summer-2026"],
-    ["givenchy", 1997, "1997 S/S · 오트 쿠튀르", 931292],
-    ["fendi", 2024, "2024 S/S · 쿠튀르", l + "news-lvmh/poetic-emotion-at-fendi-couture-springsummer-2024/"],
+    ["dior", 2025, "2025 S/S · Womenswear", "https://www.dior.com/en_us/fashion/womens-fashion/ready-to-wear-shows/spring-summer-2025-ready-to-wear-show"],
+    ["dior", 2026, "2026 S/S · Menswear", l + "news-lvmh/jonathan-anderson-presents-debut-collection-for-dior-at-mens-summer-2026-show"],
+    ["dior", 2026, "2026 S/S · Haute couture", l + "news-lvmh/jonathan-anderson-presents-debut-dior-haute-couture-collection-spring-summer-2026"],
+    ["givenchy", 1997, "1997 S/S · Haute couture", 931292],
+    ["fendi", 2024, "2024 S/S · Couture", l + "news-lvmh/poetic-emotion-at-fendi-couture-springsummer-2024/"],
     ["loewe", 2025, "2025 F/W", l + "news-lvmh/fashion-art-and-craft-for-loewe-fall-winter-2025/"],
-    ["chanel", 1983, "1983 S/S · 2015년 재제작본", 701372],
+    ["chanel", 1983, "1983 S/S · 2015 remake", 701372],
     ["chanel", 1992, "1992 S/S", 80665],
     ["chanel", 1996, "1996 S/S", 138050],
     ["chanel", 2000, "2000 S/S", 100653],
     ["chanel", 2011, "2011 S/S", 171074],
-    ["prada", 2021, "2021 S/S · 여성복", p + "news-media/press-releases-documents/2020/20-09-24-dialogues-prada-ss2021-womenswear.html"],
-    ["prada", 2024, "2024 S/S · 여성복", p + "news-media/press-releases-documents/2023/23-09-21-prada-ss-24-womenswear-show.html"],
+    ["prada", 2021, "2021 S/S · Womenswear", p + "news-media/press-releases-documents/2020/20-09-24-dialogues-prada-ss2021-womenswear.html"],
+    ["prada", 2024, "2024 S/S · Womenswear", p + "news-media/press-releases-documents/2023/23-09-21-prada-ss-24-womenswear-show.html"],
     ["versace", 1991, "1991 S/S", 83250],
     ["versace", 1996, "1996 S/S", 81319],
     ["versace", 1997, "1997–98 F/W", 81147],
@@ -215,14 +215,14 @@
     ["kenzo", 2026, "2026 F/W", l + "news-lvmh/freedom-color-and-joy-infuse-kenzo-fall-winter-2026-presentation"],
     ["pucci", 2025, "2025 S/S · Portofino", l + "news-lvmh/pucci-presents-spring-summer-2025-collection-in-portofino"],
     ["miu-miu", 2025, "2025 S/S", "https://www.miumiu.com/th/en/miumiu-club/fashion-shows/ss25-fashion-show.html"],
-    ["hermes", 2025, "2025 S/S · 여성복", "https://www.hermes.com/hk/en/content/336064-women-spring-summer-collection-2025/"],
-    ["hermes", 2026, "2026 S/S · 여성복", "https://www.hermes.com/us/en/content/341542-women-spring-summer-2026-runway-show/"],
+    ["hermes", 2025, "2025 S/S · Womenswear", "https://www.hermes.com/hk/en/content/336064-women-spring-summer-collection-2025/"],
+    ["hermes", 2026, "2026 S/S · Womenswear", "https://www.hermes.com/us/en/content/341542-women-spring-summer-2026-runway-show/"],
     ["valentino", 2025, "2025 S/S · Pavillon des Folies", "https://www.valentino.com/en-us/v-universe/fashion-shows/pret-a-porter/valentino-pavillon-des-folies-spring-summer-2025"],
-    ["schiaparelli", 2025, "2025 S/S · 오트 쿠튀르 · Look 1", "https://schiaparelli.com/en/pages/looks/haute-couture-printemps-ete-2025-look1"],
-    ["jil-sander", 2025, "2025 S/S · 남성복·여성복", "https://www.jilsander.com/en-us/men-s-and-women-s%3Cbr%3Espring-summer/ss25mw.html"],
-    ["vuitton", 2025, "2025 S/S · 여성복", "https://au.louisvuitton.com/eng-au/magazine/articles/women-spring-summer-2025-show"],
+    ["schiaparelli", 2025, "2025 S/S · Haute couture · Look 1", "https://schiaparelli.com/en/pages/looks/haute-couture-printemps-ete-2025-look1"],
+    ["jil-sander", 2025, "2025 S/S · Menswear and womenswear", "https://www.jilsander.com/en-us/men-s-and-women-s%3Cbr%3Espring-summer/ss25mw.html"],
+    ["vuitton", 2025, "2025 S/S · Womenswear", "https://au.louisvuitton.com/eng-au/magazine/articles/women-spring-summer-2025-show"],
     ["bottega", 2025, "2025 Summer", "https://www.bottegaveneta.com/de-de/inside-bottega/kollektionen/kollektion-sommer-25"],
-    ["givenchy", 2025, "2025 F/W · Sarah Burton 데뷔", l + "news-lvmh/sarah-burton-debuts-first-collection-with-givenchy-fall-winter-2025/"],
+    ["givenchy", 2025, "2025 F/W · Sarah Burton’s debut", l + "news-lvmh/sarah-burton-debuts-first-collection-with-givenchy-fall-winter-2025/"],
     ["patou", 2026, "2026 S/S", "https://www.patou.com/collections/spring-summer-2026"],
     ["gaultier", 1984, "1984–85 F/W", 105372],
     ["gaultier", 1996, "1996 S/S", 79159],
@@ -250,8 +250,8 @@
     ["dior", 2024, "2024–25 F/W · Maria Grazia Chiuri", l + "news-lvmh/creative-femininity-infuses-dior-fall-winter-2024-2025/"],
     ["givenchy", 1998, "1998–99 F/W · Alexander McQueen", 82536],
     ["givenchy", 2008, "2008 S/S · Riccardo Tisci", "https://www.metmuseum.org/exhibitions/listings/2013/punk/images"],
-    ["givenchy", 2024, "2024 S/S · 남성복 · Matthew M. Williams", l + "news-lvmh/givenchy-presents-spring-summer-2024-mens-collection-at-hotel-des-invalides"],
-    ["vuitton", 2024, "2024 S/S · 남성복 · Pharrell Williams", l + "news-lvmh/louis-vuitton-kicks-off-paris-fashion-week-for-men-with-pharrell-williams-first-springsummer-2024-collection/"],
+    ["givenchy", 2024, "2024 S/S · Menswear · Matthew M. Williams", l + "news-lvmh/givenchy-presents-spring-summer-2024-mens-collection-at-hotel-des-invalides"],
+    ["vuitton", 2024, "2024 S/S · Menswear · Pharrell Williams", l + "news-lvmh/louis-vuitton-kicks-off-paris-fashion-week-for-men-with-pharrell-williams-first-springsummer-2024-collection/"],
     ["fendi", 2025, "2025 S/S · Kim Jones", l + "news-lvmh/timeless-sensuality-shapes-fendi-springsummer-2025"],
     ["fendi", 2026, "2026–27 F/W · Maria Grazia Chiuri", l + "news-lvmh/maria-grazia-chiuri-presents-first-collection-for-fendi-fall-winter-2026-2027"],
     ["celine", 2013, "2013–14 F/W · Phoebe Philo", 701407],
@@ -267,8 +267,8 @@
   const names = [...new Set(careers.map(row => row[1]))];
   const people = [...houseMap.values(), ...names.map(name => ({ id: name, name, type: "designer" }))];
   const byId = new Map(people.map(item => [item.id, item]));
-  const founders = new Set(careers.filter(row => row[4].includes("창립") || row[4].includes("설립")).map(row => row[1]));
-  const countText = people.length + "개 노드 · " + careers.length + "개 관계 · " + seasons.length + "개 시즌 링크";
+  const founders = new Set(careers.filter(row => /founder|founded/i.test(row[4])).map(row => row[1]));
+  const countText = people.length + " nodes · " + careers.length + " connections · " + seasons.length + " season links";
   const normalize = value => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
   const instances = new Map();
 
@@ -302,7 +302,7 @@
     const events = new AbortController();
     const on = (target, type, handler) => target?.addEventListener(type, handler, { signal: events.signal });
     const buttonNamed = pattern => [...host.querySelectorAll("button")].find(b => pattern.test(b.textContent.trim()));
-    const back = find("#back, #prev, #previous, #back-btn") || buttonNamed(/^이전 선택$/);
+    const back = find("#back, #prev, #previous, #back-btn") || buttonNamed(/^Previous selection$/);
     const typeFilter = find("#index-filter, #index-type") || host.querySelector("select");
     const depth = find("#depth, #z-depth, #z-range") || host.querySelector('input[type="range"]');
     const depthValue = find("#depth-value, #depth-label, #z-value") ||
@@ -417,14 +417,14 @@
       const item = byId.get(selected);
       if (!item) {
         detail.replaceChildren(element("div", "eyebrow", "FASHION ORBIT"),
-          element("h2", "", "전체 연결망"), element("p", "intro", countText));
+          element("h2", "", "Full network"), element("p", "intro", countText));
         return;
       }
       const jobs = careers.filter(([house, person]) => house === selected || person === selected)
         .sort((a, b) => a[2] - b[2]);
       detail.replaceChildren(element("div", "eyebrow", item.type === "brand" ? "HOUSE TIMELINE" : "DESIGNER CAREER"),
         element("h2", "", item.name));
-      if (item.url) detail.append(link(item.url, "하우스 자료"));
+      if (item.url) detail.append(link(item.url, "House archive"));
       detail.append(element("div", "section-label", "CAREER TIMELINE"));
       for (const [house, person, start, end, role, url] of jobs) {
         const other = byId.get(selected === house ? person : house);
@@ -435,19 +435,19 @@
         button.append(content);
         button.onclick = () => select(other.id);
         article.append(element("div", "career-years", end ? start + "–" + end : String(start)),
-          button, link(url || houseMap.get(house).url, "출처"));
+          button, link(url || houseMap.get(house).url, "Source"));
         detail.append(article);
       }
       if (item.type === "brand") {
         const archive = seasons.filter(row => row[0] === item.id).sort((a, b) => a[1] - b[1]);
         detail.append(element("div", "section-label", "SEASON ARCHIVE"));
-        if (!archive.length) detail.append(element("p", "intro", "등록된 시즌 자료가 없습니다."));
+        if (!archive.length) detail.append(element("p", "intro", "No season records available."));
         for (const [, , title, url] of archive) {
           const row = element("div", "career");
           const archiveLink = link(typeof url === "number" ? m + url : url,
-            title + (typeof url === "number" ? " · Met 소장품" :
-              url.startsWith("https://collections.lacma.org/") ? " · LACMA 소장품" :
-              url.startsWith("https://www.metmuseum.org/") ? " · Met 전시 자료" : " · 공식 자료"));
+            title + (typeof url === "number" ? " · The Met collection" :
+              url.startsWith("https://collections.lacma.org/") ? " · LACMA collection" :
+              url.startsWith("https://www.metmuseum.org/") ? " · The Met exhibition" : " · Official source"));
           archiveLink.style.setProperty("color", "#fff", "important");
           row.append(archiveLink);
           detail.append(row);
@@ -457,9 +457,9 @@
 
     function renderIndex() {
       const category = normalize(typeFilter?.value || "");
-      const filterType = /brand|house|하우스|브랜드/.test(category) ? "brand" :
-        /designer|person|디자이너|인물/.test(category) ? "designer" : "";
-      const foundersOnly = /founder|창립|설립/.test(category);
+      const filterType = /brand|house/.test(category) ? "brand" :
+        /designer|person/.test(category) ? "designer" : "";
+      const foundersOnly = /founder/.test(category);
       const matches = people.filter(item =>
         (!filterType || item.type === filterType) && (!foundersOnly || founders.has(item.id)) &&
         normalize(item.name).includes(query));
@@ -473,11 +473,11 @@
       }
       if (back) back.disabled = history.length === 0;
       const count = find("#index-count");
-      if (count) count.textContent = matches.length + "개 표시";
+      if (count) count.textContent = matches.length + (matches.length === 1 ? " entry" : " entries");
       requestRender();
       if (!list) return;
       list.replaceChildren();
-      if (!matches.length) list.append(element("p", "intro", "검색 결과가 없습니다."));
+      if (!matches.length) list.append(element("p", "intro", "No matches found."));
       for (const item of matches) {
         const button = element("button", "index-item");
         button.setAttribute("aria-pressed", String(item.id === selected));
@@ -647,7 +647,7 @@
       requestRender();
       if (rotate) {
         rotate.setAttribute("aria-pressed", String(spinning));
-        rotate.textContent = spinning ? "회전 정지" : "자동 회전";
+        rotate.textContent = spinning ? "Stop rotation" : "Auto-rotate";
       }
     }
     on(rotate, "click", () => setSpin(!spinning));
