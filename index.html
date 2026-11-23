@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Studio Choi — Fashion Lab 001</title>
+<title>Studio Choi — Pattern Prototype</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#eceae3;color:#22241e;font:15px system-ui,sans-serif}
@@ -35,11 +35,27 @@ button{flex:1;padding:10px 5px;background:transparent;border:1px solid #515449;c
 button:hover{background:#d9dbcf}
 [hidden]{display:none!important}
 @media(max-width:650px){.lab{grid-template-columns:minmax(0,1fr);gap:16px}.stage{height:clamp(350px,58vh,520px)}header{margin-bottom:16px}}
+
+body,main,.stage{background:#fff;color:#171717}
+header{align-items:flex-end;border-color:#222;padding-bottom:16px}
+header span{font:10px ui-monospace,monospace;letter-spacing:.11em}
+h1{font:500 clamp(34px,5vw,68px)/1.04 Arial,sans-serif;letter-spacing:-.055em;margin:8px 0 0}
+.development{white-space:nowrap;padding-bottom:4px}
+.development::before{content:"";display:inline-block;width:6px;height:6px;background:#222;margin-right:8px;border-radius:50%}
+.stage{border:1px solid #ddd}
+#garments{gap:0}
+#garments button+button{border-left:0}
+button,.zoom button,#garments button{background:white;border-color:#aaa;color:#202020}
+button:hover{background:#f3f3f3}
+#garments button[aria-pressed=true]{background:#181818;color:white;border-color:#181818}
+input{accent-color:#222}
+fieldset{border-color:#bbb}
+@media(max-width:500px){header{align-items:flex-start;flex-direction:column;gap:8px}}
 </style>
 </head>
 <body>
 <main>
-<header><h1>Fashion Lab 001</h1><span>STUDIO.CHOI</span></header>
+<header><div><span>STUDIO.CHOI / FASHION LAB</span><h1>Pattern Prototype</h1></div><span class="development">In development</span></header>
 <fieldset id="garments" disabled aria-label="옷 선택">
 <button type="button" data-garment="jacket" aria-pressed="true">재킷</button>
 <button type="button" data-garment="hoodie" aria-pressed="false">후디</button>
@@ -211,7 +227,7 @@ THE SOFTWARE.
     }
     const torso = [
       [-1.23,.86,.39,.035],[-1.16,.87,.40,.018],[-.62,.77,.39,.015],
-      [-.14,.77,.42,.018],[.30,.87,.45,.21],[.77,.96,.44,.46],
+      [-.14,.744,.404,.018],[.30,.87,.45,.21],[.77,.96,.44,.46],
       [1.04,1.01,.40,.64],[1.19,.81,.34,.78],[1.36,.35,.27,.85]
     ]
     function profileAt(levels, y) {
@@ -309,6 +325,11 @@ THE SOFTWARE.
         })
       })
       surface(body,lapel,facing)
+      const dart=Array.from({length:19},(_,i)=>{
+        const t=i/18, y=-.405+.82*t, x=.37+.039*Math.sin(Math.PI*t);
+        return [side*x,y,chestDepth(x,y)+.004];
+      });
+      curve(body,dart,.0045,seam);
       const frontEdge=rings.map(r=>r[side>0?0:r.length-1])
       curve(body,frontEdge,.006,seam)
 
@@ -370,6 +391,11 @@ THE SOFTWARE.
         })
       })
       surface(sleeve,rows,cloth,true)
+      // Longitudinal seams separating upper sleeve and undersleeve.
+      for(const col of [27,50]){
+        const line=rows.slice(7).map(row=>row[side>0?col:(108-col)%72]);
+        curve(sleeve,line,.005,seam);
+      }
       const top = rows[0]
       surface(sleeve,[top,top.map(()=>[side*-.12,.210,-.018])],cloth,true)
 
@@ -436,6 +462,10 @@ THE SOFTWARE.
             T.MathUtils.lerp(bodyLevels[0][0],1.02,i/73)
           ))
           surface(trunk,trunkRows,cloth,true)
+          for(const col of [18,54]){
+            const line=trunkRows.map(r=>r[col]).map(([x,y,z])=>[x*1.004,y,z]);
+            curve(trunk,line,.0045,seam);
+          }
           const neck = trunkRows.at(-1)
           const collarRows = [
             neck,
@@ -554,6 +584,8 @@ THE SOFTWARE.
             const higher=turned.map(([px,y,pz])=>[px,y+.105,pz])
             surface(joint,[turned,higher],inner,true)
             surface(joint,[higher,higher.map(([,y])=>[x,y+.01,z])],inner,true)
+            const underarm=rows.slice(9).map(row=>row[side>0?28:0]);
+            curve(joint,underarm,.0045,seam);
             const c=rows[isHoodie?45:46]
             curve(joint,c.filter((_,i)=>i%4===0),.0065,seam)
             if (isHoodie) {
@@ -668,6 +700,8 @@ THE SOFTWARE.
               ...legRows.filter((_,i)=>i>0&&i%5===0).map(row=>row[20])]
             curve(root,outward.map(([x,y,z])=>[x+side*.0015,y,z]),.0034,facing)
 
+            const inseam=legRows.slice(1).filter((_,i)=>i%3===0).map(r=>r[60]);
+            curve(root,inseam,.0045,seam);
             const hem = legRows.at(-1)
             const [center,,,shift] = profileAt(leg,cuff)
             const lip = hem.map(([x,y,z])=>[
@@ -761,7 +795,8 @@ THE SOFTWARE.
                 live[i] = x*(1+(width-1)*hipWeight)
                   +center*(width-1)*.42*(1-hipWeight)
                   +(x-center)*(hem-1)*hemWeight
-                live[i+1] = -.274+(y+.274)*(y>=-.274 ? rise : length)
+                const backLift=.09*T.MathUtils.smoothstep(-z,0,.19)*T.MathUtils.smoothstep(y,-.35,.70);
+                live[i+1] = -.274+(y+.274)*(y>=-.274 ? rise : length)+backLift
                 live[i+2] = z*(1+(hem-1)*hemWeight)
               }
               positions.needsUpdate = true
