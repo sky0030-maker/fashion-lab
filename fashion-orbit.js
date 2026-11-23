@@ -314,14 +314,21 @@
     const initialDepth = depth?.value;
     let selected = null;
     let query = "";
-    let yaw = 0.25;
-    let pitch = -0.12;
+    let yaw = 0.12;
+    let pitch = -0.08;
     let zoom = 1;
     let spinning = false;
+    let spinPhase = 0;
+    let spinCenter = 0;
     let pointer = null;
     let suppressClickUntil = 0;
     let last = 0;
     let frameId = null;
+    let hovered = null;
+    let keyboardFocus = null;
+    const camera = { x: 0, y: 0, scale: 1 };
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let related = new Set();
 
     // Let the browser scroll the Cargo page vertically and reserve sideways swipes for Orbit.
     space.style.setProperty("touch-action", "pan-y", "important");
@@ -334,27 +341,54 @@
     Object.assign(canvas.style, { position: "absolute", inset: "0", width: "100%", height: "100%", pointerEvents: "none" });
     const context = canvas.getContext("2d");
     layer.replaceChildren(canvas);
+    layer.style.overflow = "hidden";
 
-    const nodes = new Map(people.map((item, index) => {
+    const columns = Math.ceil(Math.sqrt(people.length * 1.55));
+    const rows = Math.ceil(people.length / columns);
+    const slots = Array(people.length);
+    houses.forEach(([id], index) => { slots[Math.floor(index * people.length / houses.length)] = byId.get(id); });
+    let nextDesigner = houses.length;
+    for (let i = 0; i < slots.length; i++) {
+      if (!slots[i]) slots[i] = people[nextDesigner++];
+    }
+
+    const nodes = new Map(slots.map((item, index) => {
       const node = element("button", "node " + item.type);
       const mark = item.name.split(/\s+/).slice(0, 2).map(word => Array.from(word)[0]).join("");
       const disc = element("span", "disc");
       disc.append(element("span", "", mark));
-      node.append(disc, element("strong", "", item.name),
-        element("small", "", item.type === "brand" ? "FASHION HOUSE" : "DESIGNER"));
+      const name = element("strong", "", item.name);
+      const category = element("small", "", item.type === "brand" ? "FASHION HOUSE" : "DESIGNER");
+      node.setAttribute("aria-label", item.name + " · " + category.textContent);
+      node.append(disc, name, category);
       on(node, "click", () => select(item.id));
+      on(node, "pointerenter", event => {
+        if (event.pointerType === "touch") return;
+        hovered = item.id;
+        requestRender();
+      });
+      on(node, "pointerleave", () => {
+        if (hovered === item.id) hovered = null;
+        requestRender();
+      });
+      on(node, "focus", () => {
+        keyboardFocus = node.matches(":focus-visible") ? item.id : null;
+        requestRender();
+      });
+      on(node, "blur", () => {
+        if (keyboardFocus === item.id) keyboardFocus = null;
+        requestRender();
+      });
       layer.append(node);
 
-      // Use uneven radii and a tilted band so the silhouette changes as it rotates.
-      const latitude = ((index + 0.5) * 0.7548776662) % 1;
-      const y = 1 - 2 * latitude;
-      const azimuth = index * Math.PI * (3 - Math.sqrt(5));
-      const radius = (0.66 + 0.28 * (((index + 1) * 0.6180339887) % 1)) *
-        (1 + 0.16 * Math.cos(3 * azimuth + y));
-      const ring = radius * Math.sqrt(1 - y * y);
-      const x = ring * Math.cos(azimuth);
-      const z = ring * Math.sin(azimuth);
-      return [item.id, { node, x: x * 1.15, y: y * radius * 0.82 + x * 0.22, z }];
+      // Stagger adjacent rows and vary the depth without collapsing the overview into a ball.
+      const column = index % columns;
+      const row = Math.floor(index / columns);
+      const jitter = Math.sin(index * 12.9898);
+      const x = 2 * (column + 0.5 + (row % 2 - 0.5) * 0.32 + jitter * 0.16) / columns - 1;
+      const y = 2 * (row + 0.5 + Math.cos(index * 7.91) * 0.24) / rows - 1 + x * 0.06;
+      const z = Math.sin(x * 4.4 + y * 2.6) * 0.32 + jitter * 0.16;
+      return [item.id, { node, name, category, x, y, z }];
     }));
     const resize = typeof ResizeObserver === "function" ? new ResizeObserver(requestRender) : null;
     if (resize) resize.observe(space);
@@ -418,7 +452,7 @@
       const visible = new Set(matches.map(item => item.id));
       for (const [id, view] of nodes) {
         const active = id === selected;
-        view.node.hidden = !active && !visible.has(id);
+        view.node.hidden = !active && !related.has(id) && !visible.has(id);
         view.node.style.display = view.node.hidden ? "none" : "";
         view.node.classList.toggle("selected", active);
         view.node.setAttribute("aria-pressed", String(active));
@@ -444,6 +478,11 @@
       if (selected === id || (id !== null && !byId.has(id))) return;
       if (remember) history.push(selected);
       selected = id;
+      related = new Set();
+      for (const [house, person] of careers) {
+        if (house === selected) related.add(person);
+        if (person === selected) related.add(house);
+      }
       renderIndex();
       renderDetail();
     }
@@ -461,23 +500,19 @@
       }
       const dt = last ? Math.min(time - last, 50) : 16.67;
       last = time;
-      if (spinning && !pointer) yaw += dt * 0.00045;
+      if (spinning && !pointer) {
+        spinPhase += dt * 0.00048;
+        yaw = spinCenter + Math.sin(spinPhase) * 0.39;
+      }
       const width = space.clientWidth;
       const height = space.clientHeight;
       const value = depth ? Number(depth.value) : 1.15;
       const zDepth = Number.isFinite(value) ? Math.max(0, Math.min(3, value)) : 1.15;
-      const radius = Math.min(width * 0.39, height * 0.38) * zoom;
-      const labelScale = Math.min(1, Math.max(0.71, width / 650));
+      const spanX = width * 0.46;
+      const spanY = height * 0.36;
       const cy = Math.cos(yaw), sy = Math.sin(yaw);
       const cp = Math.cos(pitch), sp = Math.sin(pitch);
-      const points = new Map();
-      const related = new Set();
-      if (selected) {
-        for (const [house, person] of careers) {
-          if (house === selected) related.add(person);
-          if (person === selected) related.add(house);
-        }
-      }
+      const projected = new Map();
       for (const [id, view] of nodes) {
         if (view.node.hidden) continue;
         const x = view.x * cy + view.z * sy;
@@ -485,15 +520,61 @@
         const y = view.y * cp - z * sp;
         const front = (view.y * sp + z * cp) * zDepth;
         const perspective = 1 / (1 - front * 0.13);
-        const px = width / 2 + x * radius * perspective;
-        const py = height / 2 + y * radius * perspective;
+        projected.set(id, { x: x * perspective, y: y * perspective, front, perspective });
+      }
+
+      const target = projected.get(selected) || { x: 0, y: 0 };
+      let targetScale = selected ? 1.55 : 1;
+      // Fit all immediate connections at the default zoom, even when a link crosses the map.
+      for (const id of related) {
+        const point = projected.get(id);
+        if (!point) continue;
+        const dx = Math.abs(point.x - target.x);
+        const dy = Math.abs(point.y - target.y);
+        if (dx) targetScale = Math.min(targetScale, 0.88 / dx);
+        if (dy) targetScale = Math.min(targetScale, 0.93 / dy);
+      }
+      const ease = reducedMotion.matches ? 1 : 1 - Math.exp(-Math.max(dt, 1) / 88);
+      const moving = Math.max(Math.abs(target.x - camera.x), Math.abs(target.y - camera.y),
+        Math.abs(targetScale - camera.scale)) > 0.001;
+      camera.x += (target.x - camera.x) * (moving ? ease : 1);
+      camera.y += (target.y - camera.y) * (moving ? ease : 1);
+      camera.scale += (targetScale - camera.scale) * (moving ? ease : 1);
+
+      const points = new Map();
+      const labels = [];
+      const compact = Math.max(0.56, Math.min(1, width / 1000));
+      for (const [id, point] of projected) {
+        const view = nodes.get(id);
+        const px = width / 2 + (point.x - camera.x) * spanX * zoom * camera.scale;
+        const py = height / 2 + (point.y - camera.y) * spanY * zoom * camera.scale;
         const active = selected === id;
-        const baseScale = byId.get(id).type === "brand" ? 0.69 : 0.56;
-        const scale = (active ? 0.86 : baseScale * labelScale) * perspective;
+        const connected = related.has(id);
+        const highlighted = id === hovered || id === keyboardFocus;
+        const brand = byId.get(id).type === "brand";
+        const baseScale = brand ? 0.48 : 0.37;
+        const scale = (active ? 0.86 : connected || highlighted ? 0.58 : baseScale * compact) * point.perspective;
         view.node.style.transform = `translate(${px}px, ${py}px) translate(-50%, -50%) scale(${scale})`;
-        view.node.style.zIndex = active ? "350" : String(Math.round(150 + front * 30));
-        view.node.style.opacity = !selected || active || related.has(id) ? "1" : "0.24";
+        view.node.style.zIndex = active ? "350" : highlighted ? "340" :
+          String(Math.round((connected ? 260 : 150) + point.front * 24));
+        view.node.style.opacity = !selected || active || connected || highlighted ? "1" : "0.12";
+        view.name.style.visibility = "hidden";
+        view.category.style.visibility = active ? "visible" : "hidden";
         points.set(id, [px, py]);
+        if (active || highlighted || connected || (!selected && brand)) {
+          const priority = active ? 4 : highlighted ? 3 : connected ? 2 : 1;
+          const half = Math.max(26, byId.get(id).name.length * 6 * scale);
+          labels.push({ view, priority, left: px - half, right: px + half, top: py + 5, bottom: py + 34 * scale });
+        }
+      }
+      const placed = [];
+      labels.sort((a, b) => b.priority - a.priority);
+      for (const label of labels) {
+        const overlap = placed.some(other => label.left < other.right && label.right > other.left &&
+          label.top < other.bottom && label.bottom > other.top);
+        if (label.priority < 3 && (overlap || label.left < 0 || label.right > width)) continue;
+        label.view.name.style.visibility = "visible";
+        placed.push(label);
       }
       if (context) {
         const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -504,7 +585,7 @@
         }
         context.setTransform(ratio, 0, 0, ratio, 0, 0);
         context.clearRect(0, 0, width, height);
-        context.strokeStyle = selected ? "#aff3d9a0" : "#aff3d937";
+        context.strokeStyle = selected ? "#aff3d9a0" : "#aff3d922";
         context.beginPath();
         for (const [house, person] of careers) {
           if (selected && selected !== house && selected !== person) continue;
@@ -515,7 +596,7 @@
         }
         context.stroke();
       }
-      if (spinning && !pointer) requestRender();
+      if ((spinning && !pointer) || (moving && ease < 1)) requestRender();
     }
 
     for (const input of searches) {
@@ -543,7 +624,11 @@
     on(find("#plus"), "click", () => changeZoom(0.1));
     on(find("#minus"), "click", () => changeZoom(-0.1));
     function setSpin(value) {
-      if (value && !spinning) last = 0;
+      if (value && !spinning) {
+        last = 0;
+        spinPhase = 0;
+        spinCenter = Math.max(-0.31, Math.min(0.31, yaw));
+      }
       spinning = value;
       requestRender();
       if (rotate) {
@@ -555,8 +640,10 @@
     on(find("#reset"), "click", () => {
       history.length = 0;
       selected = null;
-      yaw = 0.25;
-      pitch = -0.12;
+      related.clear();
+      hovered = null;
+      yaw = 0.12;
+      pitch = -0.08;
       zoom = 1;
       query = "";
       for (const input of searches) input.value = "";
@@ -597,8 +684,9 @@
         pointer.dragging = true;
         space.setPointerCapture(event.pointerId);
       }
-      yaw += dx * 0.01;
-      pitch = Math.max(-1.4, Math.min(1.4, pitch + dy * 0.01));
+      if (spinning) setSpin(false);
+      yaw = Math.max(-0.83, Math.min(0.83, yaw + dx * 0.006));
+      pitch = Math.max(-0.68, Math.min(0.68, pitch + dy * 0.006));
       pointer.x = event.clientX;
       pointer.y = event.clientY;
       requestRender();
